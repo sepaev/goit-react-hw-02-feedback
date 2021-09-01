@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Section = styled.section`
-  width: 80%;
+  width: 50%;
   margin: auto;
   text-align: center;
 `;
@@ -25,4 +25,10 @@ export const ListDiv = styled.div`
 
 export const ItemLi = styled.li`
   list-style: none;
+`;
+
+export const ItemP = styled.p`
+  padding: 10px;
+  font-size: 18px;
+  margin: 20px;
 `;
