@@ -2,6 +2,7 @@ import { Component, Fragment } from "react";
 import FeedbackOptions from "./FeedbackOptions ";
 import Statistics from "./Statistics";
 import { Section } from "./Section";
+import { Notification } from "./Notification";
 
 export class Feedback extends Component {
   state = { good: 0, neutral: 0, bad: 0 };
@@ -28,7 +29,7 @@ export class Feedback extends Component {
 
   getStaticChildren = () => {
     const total = this.countTotalFeedback();
-    return (
+    return total ? (
       <Statistics
         good={this.state.good}
         neutral={this.state.neutral}
@@ -36,6 +37,8 @@ export class Feedback extends Component {
         total={total}
         positivePercentage={this.countPositiveFeedbackPercentage(total)}
       />
+    ) : (
+      <Notification message="No feedback given" />
     );
   };
 
