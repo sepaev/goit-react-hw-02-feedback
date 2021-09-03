@@ -1,4 +1,5 @@
 import { SectionStyled, TitleH2 } from "./Feedback.styled";
+import PropTypes from "prop-types";
 
 export const Notification = ({ message }) => {
   return (
@@ -6,4 +7,8 @@ export const Notification = ({ message }) => {
       <TitleH2>{message}</TitleH2>
     </SectionStyled>
   );
+};
+
+Notification.propTypes = {
+  message: PropTypes.string.isRequired,
 };

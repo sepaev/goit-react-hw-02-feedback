@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { ItemLi, ItemP, NameSpan, ListDiv } from "./Feedback.styled";
 
 class Statistics extends Component {
@@ -6,7 +7,8 @@ class Statistics extends Component {
     return (
       <ItemLi>
         <ItemP>
-          <NameSpan>{name}</NameSpan>: {counter + sign}
+          <NameSpan>{name}:</NameSpan>
+          {counter + sign}
         </ItemP>
       </ItemLi>
     );
@@ -27,3 +29,11 @@ class Statistics extends Component {
 }
 
 export default Statistics;
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+};

@@ -37,7 +37,8 @@ export const ItemLi = styled.li`
   margin: 5px;
   background-color: lightgray;
   border: 2px solid grey;
-  min-width: 150px;
+  min-width: 120px;
+  width: auto;
 `;
 export const ItemButtonLi = styled.li`
   list-style: none;
@@ -47,9 +48,15 @@ export const ItemP = styled.p`
   padding: 10px;
   font-size: 18px;
   margin: 0 20px;
+  font-weight: 700;
+  font-size: 28px;
 `;
 
 export const NameSpan = styled.span`
+  display: block;
   text-transform: capitalize;
   pointer-events: none;
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 10px;
 `;

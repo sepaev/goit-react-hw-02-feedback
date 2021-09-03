@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   FeedbackButtonBtn,
   NameSpan,
@@ -21,9 +22,15 @@ class FeedbackOptions extends Component {
     let renderText = [];
     const { options, onLeaveFeedback } = this.props;
     for (let option of options) {
-      renderText.push(this.makeButton(option, onLeaveFeedback));
+      if (option) renderText.push(this.makeButton(option, onLeaveFeedback));
     }
     return <ListDiv>{renderText}</ListDiv>;
   }
 }
 export default FeedbackOptions;
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.oneOf(["good", "neutral", "bad"]))
+    .isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};

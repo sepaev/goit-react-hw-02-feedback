@@ -1,5 +1,5 @@
 import { Component, Fragment } from "react";
-import FeedbackOptions from "./FeedbackOptions ";
+import FeedbackOptions from "./FeedbackOptions";
 import Statistics from "./Statistics";
 import { Section } from "./Section";
 import { Notification } from "./Notification";
@@ -24,7 +24,7 @@ export class Feedback extends Component {
 
   countPositiveFeedbackPercentage = (total) => {
     const result = (parseInt(this.state.good) * 100) / total;
-    return total ? result.toFixed(0) : 0;
+    return total ? parseInt(result.toFixed(0)) : 0;
   };
 
   getStaticChildren = () => {
