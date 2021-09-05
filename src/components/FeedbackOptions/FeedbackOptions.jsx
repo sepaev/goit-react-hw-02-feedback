@@ -5,12 +5,12 @@ import {
   NameSpan,
   ListDiv,
   ItemButtonLi,
-} from "./Feedback.styled";
+} from "./FeedbackOptions.styled";
 
 class FeedbackOptions extends Component {
   makeButton = (option, onLeaveFeedback) => {
     return (
-      <ItemButtonLi key={option}>
+      <ItemButtonLi>
         <FeedbackButtonBtn type="button" id={option} onClick={onLeaveFeedback}>
           <NameSpan>{option}</NameSpan>
         </FeedbackButtonBtn>
