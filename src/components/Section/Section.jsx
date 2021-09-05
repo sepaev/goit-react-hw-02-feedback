@@ -17,8 +17,8 @@ class Section extends Component {
         )}
         {component === "FeedbackOptions" && (
           <FeedbackOptions
+            names={Object.keys(data)}
             onLeaveFeedback={onLeaveFeedback}
-            options={Object.keys(data)}
           />
         )}
         {component === "Statistics" && <Statistics data={data} />}

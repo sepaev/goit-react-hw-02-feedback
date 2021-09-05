@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   FeedbackButtonBtn,
@@ -7,30 +6,23 @@ import {
   ItemButtonLi,
 } from "./FeedbackOptions.styled";
 
-class FeedbackOptions extends Component {
-  makeButton = (option, onLeaveFeedback) => {
-    return (
-      <ItemButtonLi>
-        <FeedbackButtonBtn type="button" id={option} onClick={onLeaveFeedback}>
-          <NameSpan>{option}</NameSpan>
-        </FeedbackButtonBtn>
-      </ItemButtonLi>
-    );
-  };
-
-  render() {
-    let renderText = [];
-    const { options, onLeaveFeedback } = this.props;
-    for (let option of options) {
-      if (option) renderText.push(this.makeButton(option, onLeaveFeedback));
-    }
-    return <ListDiv>{renderText}</ListDiv>;
-  }
-}
+const FeedbackOptions = ({ names, onLeaveFeedback }) => {
+  return (
+    <ListDiv>
+      {names.map((name) => (
+        <ItemButtonLi key={name}>
+          <FeedbackButtonBtn type="button" id={name} onClick={onLeaveFeedback}>
+            <NameSpan>{name}</NameSpan>
+          </FeedbackButtonBtn>
+        </ItemButtonLi>
+      ))}
+    </ListDiv>
+  );
+};
 export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.oneOf(["good", "neutral", "bad"]))
-    .isRequired,
   onLeaveFeedback: PropTypes.func.isRequired,
+  names: PropTypes.arrayOf(PropTypes.oneOf(["good", "neutral", "bad"]))
+    .isRequired,
 };

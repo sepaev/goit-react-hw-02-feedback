@@ -1,42 +1,43 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ItemLi, ItemP, NameSpan, ListDiv } from "./Statistics.styled";
+import { ItemLi, ItemP, ListDiv, NameSpan } from "./Statistics.styled";
 
 class Statistics extends Component {
-  renderItem = (name, counter, sign = "") => {
-    return (
-      <ItemLi>
-        <ItemP>
-          <NameSpan>{name}:</NameSpan>
-          {counter + sign}
-        </ItemP>
-      </ItemLi>
-    );
-  };
-
-  countPositiveFeedbackPercentage = (total, good) => {
+  countPositiveFeedback = (total, good) => {
     const result = (parseInt(good) * 100) / total;
-    return total ? parseInt(result.toFixed(0)) : 0;
+    return total ? parseInt(result.toFixed(0)) + "%" : "0%";
   };
 
-  render() {
-    const { data } = this.props;
-    const { good, neutral, bad } = data;
+  getRenderArray = (data) => {
     const total = Object.values(data).reduce(
       (counter, value) => (counter += value),
       0
     );
+    const { good, neutral, bad } = data;
+    return [
+      { name: "Good", value: good },
+      { name: "Neutral", value: neutral },
+      { name: "Bad", value: bad },
+      { name: "Total", value: total },
+      {
+        name: "Positive feedback",
+        value: this.countPositiveFeedback(total, good),
+      },
+    ];
+  };
+  render() {
+    const { data } = this.props;
+    const toRenderArray = this.getRenderArray(data);
     return (
       <ListDiv>
-        {this.renderItem("good", good)}
-        {this.renderItem("neutral", neutral)}
-        {this.renderItem("bad", bad)}
-        {this.renderItem("total", total)}
-        {this.renderItem(
-          "positive feedback",
-          this.countPositiveFeedbackPercentage(total, good),
-          "%"
-        )}
+        {toRenderArray.map(({ name, value }) => (
+          <ItemLi key={name.split(" ")[0]}>
+            <ItemP>
+              <NameSpan>{name}:</NameSpan>
+              {value}
+            </ItemP>
+          </ItemLi>
+        ))}
       </ListDiv>
     );
   }

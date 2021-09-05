@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 
+export const ListDiv = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
+
 export const ItemLi = styled.li`
   list-style: none;
   margin: 5px;
@@ -19,13 +24,7 @@ export const ItemP = styled.p`
 
 export const NameSpan = styled.span`
   display: block;
-  text-transform: capitalize;
   pointer-events: none;
   font-weight: 500;
   font-size: 18px;
-`;
-
-export const ListDiv = styled.div`
-  display: flex;
-  justify-content: space-evenly;
 `;
