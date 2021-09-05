@@ -31,7 +31,7 @@ class Statistics extends Component {
     return (
       <ListDiv>
         {toRenderArray.map(({ name, value }) => (
-          <ItemLi key={name.split(" ")[0]}>
+          <ItemLi key={name.split(" ")[0].toLowerCase()}>
             <ItemP>
               <NameSpan>{name}:</NameSpan>
               {value}
