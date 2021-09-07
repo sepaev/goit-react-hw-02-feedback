@@ -1,54 +1,50 @@
-import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ItemLi, ItemP, ListDiv, NameSpan } from "./Statistics.styled";
+import Notification from "../Notification/Notification";
 
-class Statistics extends Component {
-  countPositiveFeedback = (total, good) => {
-    const result = (parseInt(good) * 100) / total;
-    return total ? parseInt(result.toFixed(0)) + "%" : "0%";
-  };
-
-  getRenderArray = (data) => {
-    const total = Object.values(data).reduce(
-      (counter, value) => (counter += value),
-      0
-    );
-    const { good, neutral, bad } = data;
-    return [
-      { name: "Good", value: good },
-      { name: "Neutral", value: neutral },
-      { name: "Bad", value: bad },
-      { name: "Total", value: total },
-      {
-        name: "Positive feedback",
-        value: this.countPositiveFeedback(total, good),
-      },
-    ];
-  };
-  render() {
-    const { data } = this.props;
-    const toRenderArray = this.getRenderArray(data);
-    return (
-      <ListDiv>
-        {toRenderArray.map(({ name, value }) => (
-          <ItemLi key={name.split(" ")[0].toLowerCase()}>
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
+  return (
+    <>
+      {total > 0 && (
+        <ListDiv>
+          <ItemLi key="1">
             <ItemP>
-              <NameSpan>{name}:</NameSpan>
-              {value}
+              Good: <NameSpan>{good}</NameSpan>
             </ItemP>
           </ItemLi>
-        ))}
-      </ListDiv>
-    );
-  }
-}
+          <ItemLi key="2">
+            <ItemP>
+              Neutral: <NameSpan>{neutral}</NameSpan>
+            </ItemP>
+          </ItemLi>
+          <ItemLi key="3">
+            <ItemP>
+              Bad: <NameSpan>{bad}</NameSpan>
+            </ItemP>
+          </ItemLi>
+          <ItemLi key="4">
+            <ItemP>
+              Total: <NameSpan>{total}</NameSpan>
+            </ItemP>
+          </ItemLi>
+          <ItemLi key="5">
+            <ItemP>
+              Positive precentage: <NameSpan>{positivePercentage}%</NameSpan>
+            </ItemP>
+          </ItemLi>
+        </ListDiv>
+      )}
+      {total === 0 && <Notification message="No feedback" />}
+    </>
+  );
+};
 
 export default Statistics;
 
 Statistics.propTypes = {
-  data: PropTypes.exact({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }),
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
 };

@@ -6,13 +6,17 @@ import {
   ItemButtonLi,
 } from "./FeedbackOptions.styled";
 
-const FeedbackOptions = ({ names, onLeaveFeedback }) => {
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <ListDiv>
-      {names.map((name) => (
-        <ItemButtonLi key={name}>
-          <FeedbackButtonBtn type="button" id={name} onClick={onLeaveFeedback}>
-            <NameSpan>{name}</NameSpan>
+      {options.map((option) => (
+        <ItemButtonLi key={option}>
+          <FeedbackButtonBtn
+            type="button"
+            id={option}
+            onClick={onLeaveFeedback}
+          >
+            <NameSpan>{option}</NameSpan>
           </FeedbackButtonBtn>
         </ItemButtonLi>
       ))}
@@ -23,6 +27,6 @@ export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
   onLeaveFeedback: PropTypes.func.isRequired,
-  names: PropTypes.arrayOf(PropTypes.oneOf(["good", "neutral", "bad"]))
+  options: PropTypes.arrayOf(PropTypes.oneOf(["good", "neutral", "bad"]))
     .isRequired,
 };
